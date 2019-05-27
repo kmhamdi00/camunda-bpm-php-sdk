@@ -14,6 +14,41 @@ class MessageRequest extends Request {
   protected $businessKey;
   protected $correlationKeys;
   protected $processVariables;
+  protected $tenantId;
+  protected $all = false;
+
+
+  /**
+   * @param mixed $all
+   * @return $this
+   */
+  public function setAll($all) {
+    $this->all = $all;
+    return $this;
+  }
+
+  /**
+ * @return mixed
+ */
+  public function getAll(){
+    return $this->all;
+  }
+
+    /**
+   * @param mixed $tenantId
+   * @return $this
+   */
+  public function setTenantId($tenantId) {
+    $this->tenantId = $tenantId;
+    return $this;
+  }
+
+  /**
+ * @return mixed
+ */
+  public function getTenantId(){
+    return $this->tenantId;
+  }
 
   /**
    * @param mixed $businessKey
