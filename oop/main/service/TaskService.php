@@ -322,4 +322,103 @@ class TaskService extends RequestService {
       throw $e;
     }
   }
+
+    /**
+     * Retrieves the form key of the given task
+     * @link http://docs.camunda.org/api-references/rest/#!/task/get-form-key
+     *
+     * @param String $id task ID
+     * @throws \Exception
+     * @return json
+     */
+    public function getRendredForm($id) {
+        $this->setRequestUrl('/task/'.$id.'/form-variables');
+        $this->setRequestMethod('GET');
+        $this->setRequestObject(null);
+
+        try {
+            $prepare = $this->execute();
+            $response = array();
+            foreach ($prepare AS $index => $data) {
+                //$task = new Task();
+                $response[$index] = $data;
+            }
+
+            return json_encode($response);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * CComplete a task and update process variables using a form submit.
+     * @link http://docs.camunda.org/latest/api-references/rest/#task-set-assignee
+     *
+     * @param String $id Task ID
+     * @param TaskRequest $request
+     * @throws \Exception
+     */
+    public function submitTaskForm($id,  TaskRequest $request) {
+      $this->setRequestUrl('/task/'.$id. '/submit-form');
+      $this->setRequestMethod('POST');
+      $this->setRequestObject($request);
+
+      try {
+        $this->execute();
+      } catch (Exception $e) {
+        throw $e;
+      }
+    }
+
+
+
+    /**
+     * Update a task
+     * @link http://docs.camunda.org/latest/api-references/rest/#task-set-assignee
+     *
+     * @param String $id Task ID
+     * @param TaskRequest $request
+     * @throws \Exception
+     */
+    public function updateTask($id,  TaskRequest $request) {
+      $this->setRequestUrl('/task/'.$id);
+      $this->setRequestMethod('PUT');
+      $this->setRequestObject($request);
+
+      try {
+        $this->execute();
+      } catch (Exception $e) {
+        throw $e;
+      }
+
+    }
+
+    /**
+     * Retrieves the variable of the given task
+     * @link http://docs.camunda.org/api-references/rest/#!/task/get-form-key
+     *
+     * @param String $id task ID
+     * @param String  $variable variable name
+     * @throws \Exception
+     * @return json
+     */
+    public function getTaskVariable($id, $variable) {
+        $this->setRequestUrl('/task/'.$id.'/variables/'.$variable);
+        $this->setRequestMethod('GET');
+        $this->setRequestObject(null);
+
+        try {
+            $prepare = $this->execute();
+            $response = array();
+            foreach ($prepare AS $index => $data) {
+                //$task = new Task();
+                $response[$index] = $data;
+            }
+
+            return json_encode($response);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
 }

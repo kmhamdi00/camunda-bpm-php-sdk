@@ -48,6 +48,43 @@ class TaskRequest extends Request {
   protected $userId;
   protected $variables;
   protected $includeAssignedTasks;
+  protected $followUp;
+  protected $tenantId;
+  protected $tenantIdIn;
+
+
+    /**
+   * @param mixed $tenantId
+   * @return $this
+   */
+  public function setTenantId($tenantId) {
+    $this->tenantId = $tenantId;
+    return $this;
+  }
+
+   /**
+   * @return mixed
+   */
+  public function getTenantId(){
+    return $this->tenantId;
+  }
+
+  /**
+   * @param mixed $followUp
+   * @return $this
+   */
+  public function setFollowUp($followUp) {
+    $this->followUp = $followUp;
+    return $this;
+  }
+
+   /**
+   * @return mixed
+   */
+  public function getFollowup() {
+    return $this->followUp;
+  }
+
 
   /**
    * @param mixed $assignee
@@ -656,4 +693,20 @@ class TaskRequest extends Request {
   public function getIncludeAssignedTasks() {
     return $this->includeAssignedTasks;
   }
+
+    /**
+     * @param mixed $tenantIdIn
+     * @return $this
+     */
+    public function setTenantIdIn($tenantIdIn) {
+        $this->tenantIdIn = $tenantIdIn;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTenantIdIn(){
+        return $this->tenantIdIn;
+    }
 }
