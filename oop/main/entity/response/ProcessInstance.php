@@ -19,6 +19,7 @@ class ProcessInstance extends CastHelper {
   protected $suspended;
   protected $links;
 
+
   /**
    * @param mixed $businessKey
    */

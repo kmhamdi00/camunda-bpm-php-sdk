@@ -51,7 +51,18 @@ class TaskRequest extends Request {
   protected $followUp;
   protected $tenantId;
   protected $tenantIdIn;
+  protected $assigned;
 
+
+/**
+ * @param $assigned
+ * @return $this
+ */
+  public function setAssigned($assigned)
+  {
+      $this->assigned = $assigned;
+      return $this;
+  }
 
     /**
    * @param mixed $tenantId
