@@ -8,8 +8,8 @@
 
 namespace org\camunda\php\sdk\entity\request;
 
-
-class ExternalTaskRequest extends Request {
+class ExternalTaskRequest extends Request
+{
     protected $id;
     /**
      * The id of the worker on which behalf tasks are fetched. The returned
@@ -58,8 +58,16 @@ class ExternalTaskRequest extends Request {
      */
     protected $errorCode;
 
+    /**
+     * Object   A JSON object containing a property for each of the requested
+     * variables. The key is the variable name, the value is a JSON object of
+     * serialized variable values
+     */
+    protected $variables;
+ 
 
-    public function __get($property) {
+    public function __get($property)
+    {
         if (property_exists($this, $property)) {
             return $this->$property;
         }
@@ -67,11 +75,22 @@ class ExternalTaskRequest extends Request {
         throw new \Exception("$property is not a property of " . __CLASS__);
     }
 
-    public function __set($property, $value) {
+    public function __set($property, $value)
+    {
         if (property_exists($this, $property)) {
             $this->$property = $value;
         }
 
+        return $this;
+    }
+
+    /**
+   * @param mixed $topics
+   * @return $this
+   */
+    public function setTopics($topics)
+    {
+        $this->topics = $topics;
         return $this;
     }
 }
