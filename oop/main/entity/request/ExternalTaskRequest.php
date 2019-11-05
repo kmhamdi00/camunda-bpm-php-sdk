@@ -64,7 +64,8 @@ class ExternalTaskRequest extends Request
      * serialized variable values
      */
     protected $variables;
- 
+
+
 
     public function __get($property)
     {
@@ -81,16 +82,6 @@ class ExternalTaskRequest extends Request
             $this->$property = $value;
         }
 
-        return $this;
-    }
-
-    /**
-   * @param mixed $topics
-   * @return $this
-   */
-    public function setTopics($topics)
-    {
-        $this->topics = $topics;
         return $this;
     }
 }
